@@ -55,6 +55,7 @@ var Slide = (function(){
 		else if(this.type == 'fade') this.fadeInit();
 		else if(this.type == 'step') this.stepInit();
 	}
+
 	Slide.prototype.scaleInit = function() {
 		var obj = this;
 		var now = 0;
@@ -73,6 +74,7 @@ var Slide = (function(){
 			obj.container.children(".slide").remove();
 			$(obj.slide[now]).appendTo(obj.container);
 		}
+		
 		function ani() {
 			console.log(	$(obj.slide)	);
 			$(obj.slide[now]).appendTo(obj.container).css({"opacity": 0, "transform": "scale(1.2)"});
