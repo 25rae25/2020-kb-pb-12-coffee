@@ -87,6 +87,54 @@ $(".main-wrap > .bt-prev").click(onMainPrev);
 $(".main-wrap > .bt-next").click(onMainNext);
 
 
+/******************* 슬라이드 직접코딩2 ********************/
+var prdNow = 0,  prdSize = 6, prdLast, prdLeft, prdTar;
+var prds = [], prdArr = [];
+$(".prd-wrapper > .bt-left").click(onPrdLeft);
+$(".prd-wrapper > .bt-right").click(onPrdRight);
+
+$.get("../json/prds.json", onPrdLoad);
+function onPrdLoad(r) {
+	prdLast = r.prds.length - 1;
+	var html = '';
+	for(var i in r.prds) {
+		html  = '<li class="prd">';
+		html += '	<div class="prd-img"><img src="'+r.prds[i].src+'" class="img"></div>';
+		html += '	<div class="prd-title">'+r.prds[i].title+'</div>';
+		html += '	<div class="prd-price">'+r.prds[i].price+'</div>';
+		html += '</li>';
+		prds.push($(html));		
+	}
+	prdInit();
+}
+
+function prdInit() {
+	prdArr = [];
+	prdArr[1] = prdNow;
+	prdArr[0] = (prdNow == 0) ? prdLast : prdNow - 1;
+	for(var i=2; i<prdSize; i++) prdArr[i] = (prdArr[i-1] == prdLast) ? 0 : prdArr[i-1] + 1;
+	for(var i=0; i<prdArr.length; i++) $(prds[prdArr[i]]).clone().appendTo(".prd-wrap");
+}
+
+function onPrdLeft() {
+	prdTar = 0;
+	prdNow = (prdNow == 0) ? prdLast : prdNow - 1;
+	prdAni();
+}
+
+function onPrdRight() {
+	prdTar = prdLeft * 2 + "%";
+	prdNow = (prdNow == prdLast) ? 0 : prdNow + 1;
+	prdAni();
+}
+
+function prdAni() {
+	$(".prd-wrap").stop().animate({"left": prdTar}, 500, function(){
+		$(this).empty().css({"left": prdLeft+"%"});
+		prdInit();
+	});
+}
+
 
 /******************* 사용자 함수 ********************/
 
@@ -96,6 +144,11 @@ $(".main-wrap > .bt-next").click(onMainNext);
 function onResize() {
 	this.wid = $(this).innerWidth();
 	this.hei = $(this).innerHeight();
+	if(wid > 991) prdLeft = -25;
+	else if(wid > 767) prdLeft = -33.3333;
+	else if(wid > 479) prdLeft = -50;
+	else if(wid <= 479) prdLeft = -100;
+	$(".prd-wrap").css("left", prdLeft+"%");
 }
 
 function onScroll() {
