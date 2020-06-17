@@ -20,7 +20,7 @@ $btRight.css("right", "2rem");
 /******************* 전역설정 ********************/
 //Slide.scale(".main-wrap", ".banner", onComplete);
 //Slide.scale(".main-wrap2", ".banner", onComplete);
-
+var KAKAO_KEY = 'e0a15578ac37cbe4cca33f9f515a5e2b';
 
 /******************* 슬라이드 객체형 ********************/
 /*
@@ -133,6 +133,80 @@ function prdAni() {
 		$(this).empty().css({"left": prdLeft+"%"});
 		prdInit();
 	});
+}
+
+/******************* Location 동적 생성 ********************/
+$.get("../json/locations.json", onLocationLoad);
+function onLocationLoad(r) {
+	var html = '';
+	for(var i in r.locs) {
+		html  = '<li class="store">';
+		html += '<div class="photo"><img src="'+r.locs[i].src+'" class="img"></div>';
+		html += '<p class="cont">'+r.locs[i].cont+'</p>';
+		html += '<div class="addr">';
+		html += '<i class="fa fa-map-marker-alt"></i>';
+		html += '<span class="rc">Address: '+r.locs[i].addr+'</span>';
+		html += '</div>';
+		html += '<div class="time">';
+		html += '<i class="fa fa-clock"></i>';
+		html += '<span class="rc">Open: '+r.locs[i].time+'</span>';
+		html += '</div>';
+		html += '<div class="tel">';
+		html += '<i class="fa fa-phone"></i>';
+		html += '<span class="rc">Phone: '+r.locs[i].tel+'</span>';
+		html += '</div>';
+		html += '<button data-lat="'+r.locs[i].lat+'" data-lon="'+r.locs[i].lon+'" class="bt-map bt-yellow">See on Map</button>';
+		html += '</li>';
+		$(".store-wrap").append(html);
+	}
+	$(".store-wrap").find(".bt-map").click(onMapOpen);
+	$(".modal-map").find(".bt-close").click(onMapClose);
+	$(".modal-map").click(onMapClose);
+	$(".modal-map .modal-wrap").click(onModalWrap);
+	$(".modal-map").on("mousewheel", onModalWheel);
+	$(".modal-map").on("DOMMouseScroll", onModalWheel);
+}
+
+function onModalWheel(e) {
+	e.stopPropagation();
+	e.preventDefault();
+}
+
+function onModalWrap(e) {
+	e.stopPropagation();
+}
+
+function onMapOpen() {
+	$(".modal-map").css({"display": "flex", "opacity": 0}).stop().animate({"opacity": 1}, 500);
+	var lat = $(this).data("lat");
+	var lon = $(this).data("lon");
+	var container = document.getElementById('map');
+	var options = {center: new kakao.maps.LatLng(lat, lon), level: 2};
+	var map = new kakao.maps.Map(container, options);
+	var markerPosition  = new kakao.maps.LatLng(lat, lon); 
+	var marker = new kakao.maps.Marker({position: markerPosition});
+	marker.setMap(map);
+}
+
+
+function onMapClose() {
+	$(".modal-map").stop().animate({"opacity": 0}, 500, function(){
+		$(this).css("display", "none");
+	});
+}
+
+/******************* Menu 동적 생성 ********************/
+$.get("../json/menus.json", onMenuLoad);
+function onMenuLoad(r) {
+	var html = '';
+	for(var i in r.menus) {
+		html  = '<li class="menu clear">';
+		html += '<div class="menu-img"><img src="'+r.menus[i].src+'" class="img"></div>';
+		html += '<h3 class="menu-title rc">'+r.menus[i].title+'</h3>';
+		html += '<div class="menu-price rc">'+r.menus[i].price+'</div>';
+		html += '</li>';
+		$(".menus").append(html);
+	}
 }
 
 

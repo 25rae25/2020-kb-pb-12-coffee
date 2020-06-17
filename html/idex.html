@@ -65,59 +65,7 @@
 		<div class="wrapper">
 			<h2 class="title">Locations</h2>
 			<div class="bookmark-bar"><i class="fa fa-bookmark"></i></div>
-			<ul class="store-wrap">
-				<li class="store">
-					<div class="photo"><img src="../img/c-sl-012-1024x663.jpg" class="img"></div>
-					<p class="cont">Morbi vel nisi condimentum, efficitur orci at, vehicula velit. Maecenas ut euismod diam. Integer aliquet turpis eunis!</p>
-					<div class="addr">
-						<i class="fa fa-map-marker-alt"></i>
-						<span class="rc">Address: 421, Brooklyn, New York</span>
-					</div>
-					<div class="time">
-						<i class="fa fa-clock"></i>
-						<span class="rc">Open: 9 AM / 22 PM</span>
-					</div>
-					<div class="addr">
-						<i class="fa fa-phone"></i>
-						<span class="rc">Phone: +1 354 454878</span>
-					</div>
-					<button class="bt-map bt-yellow">See on Map</button>
-				</li><!-- .store -->
-				<li class="store">
-					<div class="photo"><img src="../img/c-sl-011-1024x663.jpg" class="img"></div>
-					<p class="cont">Integer iaculis justo lacus, consectetur semper massa consectetur at. Integer vitae est eget elit venenatis efficitur at sit amet ex pulvinar enim commodo semper.</p>
-					<div class="addr">
-						<i class="fa fa-map-marker-alt"></i>
-						<span class="rc">Address: 421, Brooklyn, New York</span>
-					</div>
-					<div class="time">
-						<i class="fa fa-clock"></i>
-						<span class="rc">Open: 9 AM / 22 PM</span>
-					</div>
-					<div class="addr">
-						<i class="fa fa-phone"></i>
-						<span class="rc">Phone: +1 354 454878</span>
-					</div>
-					<button class="bt-map bt-yellow">See on Map</button>
-				</li><!-- .store -->
-				<li class="store">
-					<div class="photo"><img src="../img/c-sl-010-1024x663.jpg" class="img"></div>
-					<p class="cont">Quisque porta felis turpis, et pulvinar enim commodo semper. Vivamus massa elit, sollicitudin non placerat ac, blandit eu risus. Curabitur fermentum lobortis arcu.</p>
-					<div class="addr">
-						<i class="fa fa-map-marker-alt"></i>
-						<span class="rc">Address: 421, Brooklyn, New York</span>
-					</div>
-					<div class="time">
-						<i class="fa fa-clock"></i>
-						<span class="rc">Open: 9 AM / 22 PM</span>
-					</div>
-					<div class="addr">
-						<i class="fa fa-phone"></i>
-						<span class="rc">Phone: +1 354 454878</span>
-					</div>
-					<button class="bt-map bt-yellow">See on Map</button>
-				</li><!-- .store -->
-			</ul><!-- .store-wrap -->
+			<ul class="store-wrap"></ul><!-- .store-wrap -->
 		</div>
 	</section><!-- .loc-wrap -->
 
@@ -136,11 +84,20 @@
 	</section><!-- .special-wrap -->
 
 	<section class="menu-wrap">
-
+		<div class="wrapper">
+			<h2 class="title">Menu</h2>
+			<div class="bookmark-bar"><i class="fa fa-bookmark"></i></div>
+			<ul class="menus">
+				
+			</ul>
+		</div>
 	</section><!-- .menu-wrap -->
 
 	<section class="news-wrap">
-
+		<div class="wrapper">
+			<div class="title">News &amp; Events</div>
+			<div class="bookmark-bar"><i class="fa fa-bookmark"></i></div>
+		</div>
 	</section><!-- .news-wrap -->
 
 	<section class="press-wrap">
@@ -151,6 +108,18 @@
 
 	</footer><!-- .footer-wrap -->
 
+	<div class="modal-map">
+		<button class="bt-close">
+			<i class="fa fa-times"></i>
+		</button>
+		<div class="modal-wrap">
+			<div class="modal-body">
+				<div id="map"></div>
+			</div>
+		</div>
+	</div> <!-- modal-map -->
+
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e0a15578ac37cbe4cca33f9f515a5e2b"></script>
 	<script src="../js/index.js"></script>
 </body>
 </html>
