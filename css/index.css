@@ -87,7 +87,7 @@ h1, h2, h3, h4, h5, .rc, button {font-family: 'Roboto Condensed', sans-serif; fo
 .prd-stage .prd-price {font-size: 1.25em; color: #e7b35a;}
 
 /******************* .menu-wrap ********************/
-.menu-wrap .title {font-size: 3rem; color: #333; text-align: center;}
+.menu-wrap h2.title {font-size: 3rem; color: #333; text-align: center;}
 .menu-wrap .menus {display: flex; flex-wrap: wrap; width: 102%; margin-left: -1%;}
 .menu-wrap .menu {flex: 31.3333% 0 0; margin: 0 1%; padding: 1.5rem 0; border-bottom: 1px dashed #999;}
 .menu-wrap .menu-img {width: 80px; border-radius: 50%; overflow: hidden; float: left; margin-right: 20px; background-color: #e7b35a; cursor: pointer;}
@@ -96,16 +96,45 @@ h1, h2, h3, h4, h5, .rc, button {font-family: 'Roboto Condensed', sans-serif; fo
 .menu-wrap .menu-title {padding-top: 1rem;}
 .menu-wrap .menu-price {color: #e7b35a;}
 
+/******************* .notice-wrap ********************/
+.notice-wrap h2.title {font-size: 3rem; color: #333; text-align: center;}
+.notice-wrap {position: relative;}
+.notice-wrap .news-wrapper {position: relative;}
+.notice-wrap .bt {color: #e7b35a; font-size: 2.5em; cursor: pointer; position: absolute; z-index: 800; top: 50%; transform: translateY(-50%); transition: all 0.5s;}
+.notice-wrap .bt.bt-left {left: -0.25em;}
+.notice-wrap .bt.bt-right {right: -0.25em;}
+.notice-wrap .news-stage {width: 100%; position: relative;  overflow: hidden; }
+.notice-wrap .news-wrap {width: 166.6666%; position: relative; left: -33.3333%; display: flex;}
+.notice-wrap .news {flex: 18% 0 0; margin: 0 1%; padding: 1.5em; font-size: 1rem; background-color: #eee;}
+.notice-wrap .news-img {position: relative;}
+.notice-wrap .badge-tag {position: absolute; top: 1em; left: 1em; color: #fff; font-size: 0.75em; display: flex; flex-direction: column; align-items: flex-start;}
+.notice-wrap .badge-tag .badge {padding: 0.325em 0.5em; background-color: rgba(0,0,0,0.6); margin-bottom: 0.5em;}
+.notice-wrap .badge-date {width: 65px; height: 65px; position: absolute; top: 1em; right: 1em; background-color: #fff; border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+.notice-wrap .badge-date .month {border-bottom: 3px solid #e7b35a; font-weight: lighter; font-size: 0.875em;}
+.notice-wrap .badge-date .day {font-size: 1.5em;}
+.notice-wrap .news-title {margin-top: 0.75em; font-size: 1.75em; color: #333; line-height: 1.5; font-family: 'Roboto Condensed', sans-serif; font-weight: bold; cursor: pointer; transition: all 0.5s;}
+.notice-wrap .news-title:hover {color: #e6ac65;}
+.notice-wrap .news-tag {color: #888; font-size: 0.75em; font-weight: lighter; padding: 1em 0; line-height: 1.5;}
+.notice-wrap .news-tag .tag:not(:last-child)::after {content: ""; display: inline-block; margin: 0 8px 2px 8px; width: 4px; height: 4px; background-color: #888; border-radius: 2px;}
+.notice-wrap .news-cont {font-size: 1em; line-height: 1.75; color: #666; margin: 0.5em 0;}
+.notice-wrap button {border: none; outline: none; margin-top: 1em; cursor: pointer; padding: 0.5em 0;}
+.notice-wrap button > span {font-size: 0.5em;}
+.notice-wrap button::after {display: block; content: ""; height: 3px; background-color: #e6ac65; transform: translateY(8px); width: 0; transition: all 0.5s;}
+.notice-wrap button:hover::after {width: 100%;}
+
+
+
+
+
 
 /******************* 지도 모달창 ********************/
-.modal-map {width: 100%; height: 100vh; background-color: rgba(0,0,0,0.8); position: fixed;
-top: 0; left: 0; z-index: 10000; display: none; justify-content: center; align-items: center;}
-.modal-map > button {width: 60px; height: 60px; border: none; background-color: #721e11; 
-color: #fff; font-size: 2rem; display: flex; justify-content: center; align-items: center;
-position: absolute; top: 0; right: 0; cursor: pointer;}
+.modal-map {width: 100%; height: 100vh; background-color: rgba(0,0,0,0.8); position: fixed; top: 0; left: 0; z-index: 10000; display: none; justify-content: center; align-items: center;}
+.modal-map > button {width: 60px; height: 60px; border: none; background-color: #721e11; color: #fff; font-size: 2rem; display: flex; justify-content: center; align-items: center; position: absolute; top: 0; right: 0; cursor: pointer;}
 .modal-map > .modal-wrap {width: 70%; height: 70vh; background-color: #fff;}
-.modal-map > .modal-wrap > .modal-body {width: 100%; height: 100%; }
+.modal-map > .modal-wrap > .modal-body {width: 100%; height: 100%;}
 .modal-map #map {width: 100%; height: 100%;}
+
+
 
 
 
@@ -123,6 +152,8 @@ position: absolute; top: 0; right: 0; cursor: pointer;}
 	.loc-wrap .store {width: 70%; margin: 2% auto;}
 	.prd-stage .prd-wrap {width: 166.6666%; left: -33.3333%;}
 	.prd-stage .prd {flex: 20% 0 0;}
+	.news-stage .news-wrap {width: 200%; left: -50%;}
+	.news-stage .news {flex: 23% 0 0;}
 	.menu-wrap .menus {width: 100%; margin-left: 0;}
 	.menu-wrap .menu {flex: 100% 0 0; margin: 0;}
 	.menu-wrap .menu-img {width: 200px;}
@@ -136,6 +167,8 @@ position: absolute; top: 0; right: 0; cursor: pointer;}
 	.loc-wrap .store {width: 90%; margin: 2% auto;}
 	.prd-stage .prd-wrap {width: 200%; left: -50%;}
 	.prd-stage .prd {flex: 25% 0 0;}
+	.news-stage .news-wrap {width: 300%; left: -100%;}
+	.news-stage .news {flex: 31.3333% 0 0;}
 }
 
 @media screen and (max-width: 479px) {
