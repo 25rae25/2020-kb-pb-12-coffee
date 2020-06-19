@@ -227,7 +227,6 @@ function onnewsLoad(r) {
 		for(var j in r.news[i].badge) {
 			html += '<div class="badge">'+r.news[i].badge[j]+'</div>';
 		}
-		html += '<div class="badge">News</div>';
 		html += '</div>';
 		html += '<div class="badge-date">';
 		html += '<div class="month">'+moment(r.news[i].date).format('MMM')+'</div>';
@@ -244,7 +243,7 @@ function onnewsLoad(r) {
 		html += '<button class="bt-ghost bt-more">Read more <span>▶</span></button>';
 		html += '</li>';
 		newss.push($(html));		
-	}     
+	}
 	newsInit();
 }
 
@@ -275,6 +274,22 @@ function newsAni() {
 	});
 }
 
+/******************* press 동적 생성 ********************/
+$.get("../json/press.json", onPressLoad);
+function onPressLoad(r) {
+	var html;
+	for(var i in r.press) {
+		html  = '<li class="press">';
+		html += '	<div class="logo"><img src="'+r.press[i].logo+'"></div>';
+		html += '	<div class="cont">'+r.press[i].content+'</div>';
+		html += '	<div class="writer">'+r.press[i].writer+'</div>';
+		html += '</li>';
+		$(".press-ul").append(html);
+	}
+}
+
+
+
 /******************* 사용자 함수 ********************/
 
 
@@ -284,20 +299,22 @@ function onResize() {
 	this.wid = $(this).innerWidth();
 	this.hei = $(this).innerHeight();
 	if(wid > 991) {
+		onNaviHide();
 		prdLeft = -25;
 		newsLeft = -33.3333;
-	} 
+	}
 	else if(wid > 767) {
 		prdLeft = -33.3333;
 		newsLeft = -50;
-	} 
+	}
 	else if(wid > 479) {
 		prdLeft = -50;
 		newsLeft = -100;
-	} 
+	}
 	else if(wid <= 479) {
+		prdLeft = -100;
 		newsLeft = -100;
-	} 
+	}
 	$(".prd-wrap").css("left", prdLeft+"%");
 	$(".news-wrap").css("left", newsLeft+"%");
 }
@@ -312,18 +329,81 @@ function onScroll() {
 		$(".header").css({"top": "auto", "bottom": 0, "position": "absolute"});
 	}
 
+	// .page의 현재 page 찾기
+	var nowPage = -10;
+	for(var i = $(".page").length - 1; i>=0; i--) {
+		if(	$(".page").eq(i).offset().top <= scTop	) {
+			nowPage = i;
+			break;
+		}
+	}
+	$(".navi-mo").find(".navi").css("color", "#333");
+	$(".navi-mo").find(".navi").eq(nowPage).css("color", "#e6ac65");
+
 	// .loc-wrap의 background-position-y 변화
 	var locStart = $(".loc-wrap").offset().top;
 	var locHei = $(".loc-wrap").innerHeight();
 	var locEnd = locStart + locHei + hei;
 	var locGap = 0;
-	var speed = 400;
+	var locSpeed = 400;
 	if(scTop + hei > locStart && scTop + hei < locEnd) {
-		locGap = (speed/2) - Math.round((scTop + hei - locStart) / (locEnd - locStart) * speed);
+		locGap = (locSpeed/2) - Math.round((scTop + hei - locStart) / (locEnd - locStart) * locSpeed);
 		$(".loc-wrap").css("background-position-y", locGap + "%");
 	}
+
+	// .press-wrap의 background-position-y 변화
+	var pressStart = $(".press-wrap").offset().top;
+	var pressHei = $(".press-wrap").innerHeight();
+	var pressEnd = pressStart + pressHei + hei;
+	var pressGap = 0;
+	var pressSpeed = 200;
+	if(scTop + hei > pressStart && scTop + hei < pressEnd) {
+		pressGap = (pressSpeed/2) - Math.round((scTop + hei - pressStart) / (pressEnd - pressStart) * pressSpeed);
+		$(".press-wrap").css("background-position-y", pressGap + "%");
+	}
+
+	// .bt-top show/hide
+	(scTop > hei) ? $(".bt-top").show() : $(".bt-top").hide();
+}
+
+function onTop() {
+	$("html, body").stop().animate({"scrollTop": 0}, 500);
+}
+
+function onNaviShow() {
+	$(".navi-mo").css("display", "block");
+	setTimeout(function(){
+		$(".header .bt-close").css("opacity", 1);
+		$(".navi-mo").css("background-color", "rgba(0,0,0,0.8)");
+		$(".navi-mo").find(".navi-wing").css("right", 0);
+	}, 0);
+}
+
+function onNaviHide() {
+	$(".navi-mo").css("background-color", "transparent");
+	$(this).stop().animate({"opacity": 0}, 500, function(){
+		$(".navi-mo").find(".navi-wing").css("right", "-320px");
+		setTimeout(function(){
+			$(".navi-mo").css("display", "none");
+		}, 500);
+	});
+}
+
+function onNaviClick() {
+	var tar = $(".page").eq($(this).index()).offset().top + 1;
+	$("html, body").stop().animate({"scrollTop": tar}, 500);
+}
+
+function onLogoClick() {
+	$("html, body").stop().animate({"scrollTop": 0}, 500);
 }
 
 /******************* 이벤트 설정 ********************/
 $(window).resize(onResize).trigger("resize");
 $(window).scroll(onScroll).trigger("scroll");
+$(".bt-top").click(onTop);
+$(".header .navi-bars").click(onNaviShow);
+$(".header .bt-close").click(onNaviHide);
+$(".header > .navi").click(onNaviClick);
+$(".header > .navi-mo .navi").click(onNaviClick);
+$(".header > .logo").click(onLogoClick);

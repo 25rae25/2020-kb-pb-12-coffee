@@ -16,13 +16,31 @@
 </head>
 <body>
 	<header class="header rc">
-		<div class="navi">About</div>
-		<div class="navi">Location</div>
-		<div class="navi">Offer</div>
-		<h1 class="logo"><img src="../img/l-m.png" alt="로고"></h1>
-		<div class="navi">Menu</div>
-		<div class="navi">News</div>
-		<div class="navi">Press</div>
+		<div class="navi" style="order: 1">About</div>
+		<div class="navi" style="order: 2">Location</div>
+		<div class="navi" style="order: 3">Offer</div>
+		<div class="navi" style="order: 5">Menu</div>
+		<div class="navi" style="order: 6">News</div>
+		<div class="navi" style="order: 7">Press</div>
+		<div class="navi-bars" style="order: 8">
+			<div class="bar"></div>
+			<div class="bar"></div>
+			<div class="bar"></div>
+		</div>
+		<h1 class="logo" style="order: 4"><img src="../img/l-m.png" alt="로고"></h1>
+		<div class="navi-mo">
+			<div class="navi-wing">
+				<div class="bt-close"><i class="fa fa-times"></i></div>
+				<ul class="navi-wrap rc">
+					<div class="navi">About</div>
+					<div class="navi">Location</div>
+					<div class="navi">Offers</div>
+					<div class="navi">Menu</div>
+					<div class="navi">News</div>
+					<div class="navi">Press</div>
+				</ul>
+			</div>
+		</div>
 	</header><!-- .header -->
 
 	<section class="main-wrap">
@@ -38,7 +56,7 @@
 		<div class="bt bt-next"></div>		
 	</section><!-- .main-wrap -->
 
-	<section class="about-wrap wrapper">
+	<section class="about-wrap wrapper page">
 		<div class="photos">
 			<div class="photo-lt">
 				<div class="photo">
@@ -62,7 +80,7 @@
 		</div>
 	</section><!-- .about-wrap -->
 
-	<section class="loc-wrap">
+	<section class="loc-wrap page">
 		<div class="wrapper">
 			<h2 class="title">Locations</h2>
 			<div class="bookmark-bar"><i class="fa fa-bookmark"></i></div>
@@ -70,7 +88,7 @@
 		</div>
 	</section><!-- .loc-wrap -->
 
-	<section class="special-wrap">
+	<section class="special-wrap page">
 		<div class="wrapper">
 			<h2 class="title">Specialities</h2>
 			<div class="bookmark-bar"><i class="fa fa-bookmark"></i></div>
@@ -84,7 +102,7 @@
 		</div>
 	</section><!-- .special-wrap -->
 
-	<section class="menu-wrap">
+	<section class="menu-wrap page">
 		<div class="wrapper">
 			<h2 class="title">Menu</h2>
 			<div class="bookmark-bar"><i class="fa fa-bookmark"></i></div>
@@ -92,16 +110,13 @@
 		</div>
 	</section><!-- .menu-wrap -->
 
-	<section class="notice-wrap">
+	<section class="notice-wrap page">
 		<div class="wrapper">
 			<h2 class="title">News &amp; Events</h2>
 			<div class="bookmark-bar"><i class="fa fa-bookmark"></i></div>
 			<div class="news-wrapper">
 				<div class="news-stage">
-					<ul class="news-wrap">
-						
-					
-					</ul>
+					<ul class="news-wrap"></ul>
 				</div>
 				<i class="bt bt-left fa fa-chevron-circle-left"></i>
 				<i class="bt bt-right fa fa-chevron-circle-right"></i>
@@ -109,12 +124,39 @@
 		</div>
 	</section><!-- .notice-wrap -->
 
-	<section class="press-wrap">
-
+	<section class="press-wrap page">
+		<div class="wrapper">
+			<h2 class="title">Press About Us</h2>
+			<div class="bookmark-bar"><i class="fa fa-bookmark"></i></div>
+			<ul class="press-ul"></ul>
+		</div>
 	</section><!-- .press-wrap -->
 
 	<footer class="footer-wrap">
-
+		<div class="wrapper">
+			<div class="logo"><img src="../img/l-m.png" alt="로고"></div>
+			<ul class="footer-info">
+				<li class="info">
+					<div class="addr">421, Brooklyn, New York</div>
+					<div class="tel">+1 354 454878</div>
+				</li>
+				<li class="info">
+					<div class="addr">121, Queens, New York</div>
+					<div class="tel">+1 254 9856985</div>
+				</li>
+				<li class="info">
+					<div class="addr">989, Midtown, New York</div>
+					<div class="tel">+1 695 985587</div>
+				</li>
+			</ul>
+			<ul class="footer-sns">
+				<li class="sns"><i class="fab fa-foursquare"></i></li>
+				<li class="sns"><i class="fab fa-facebook"></i></li>
+				<li class="sns"><i class="fab fa-youtube"></i></li>
+				<li class="sns"><i class="fab fa-instagram"></i></li>
+			</ul>
+			<div class="copyright">2016 Seven Coffee. All Rights Reserved.</div>
+		</div>
 	</footer><!-- .footer-wrap -->
 
 	<div class="modal-map">
@@ -127,6 +169,8 @@
 			</div>
 		</div>
 	</div><!-- .modal-map -->
+
+	<div class="bt-top"><i class="fa fa-arrow-up"></i></div>
 
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=32029a7749fd11da301a43a23f4cf61b"></script>
 	<script src="../js/index.js"></script>
